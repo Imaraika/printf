@@ -13,10 +13,10 @@
  * Return: Number of chars printed.
  */
 int handle_write_char(char c, char buffer[],
-	int flg_char, field_width, precision_hdled, len_size)
+	int flg_char, int field_width, int precision_hdled, int len_size)
 { /* char is stored at left and paddind at buffer's right */
 	int i = 0;
-	char padd = ' ';
+	char pad = ' ';
 
 	UNUSED(precision_hdled);
 	UNUSED(len_size);
@@ -56,7 +56,7 @@ int handle_write_char(char c, char buffer[],
  * @len_size: Size specifier
  * Return: Number of chars printed.
  */
-int write_num(int is_negative, int ind, char buffer[],
+int write_number(int is_negative, int ind, char buffer[],
 	int flg_char, int field_width, int precision_hdled, int len_size)
 {
 	int len = BUFF_SIZE - ind - 1;
@@ -84,7 +84,6 @@ int write_num(int is_negative, int ind, char buffer[],
  * @flg_char:  Calculates active flags
  * @field_width: get width.
  * @precision_hdled: Precision specification
- * @len_size: Size specifier
  * @len: Number length
  * @pad: Pading char
  * @extra_char: Extra char
@@ -92,7 +91,7 @@ int write_num(int is_negative, int ind, char buffer[],
  */
 int write_num(int ind, char buffer[],
 	int flg_char, int field_width, int precision_hdled,
-	int len_size, int len, char pad, char extra_char)
+	int len, char pad, char extra_char)
 {	int i, padd_start = 1;
 
 	if (precision_hdled == 0 && ind == BUFF_SIZE - 2 && buffer[ind] == '0'

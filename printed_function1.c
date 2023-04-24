@@ -56,7 +56,7 @@ int print_octal(va_list types, char buffer[],
 
 	UNUSED(field_width);
 
-	numbr = convert_size_unsgnd(numbr, size);
+	numbr = convert_size_unsgnd(numbr,len_size);
 
 	if (numbr == 0)
 		buffer[i--] = '0';
@@ -74,7 +74,7 @@ int print_octal(va_list types, char buffer[],
 
 	i++;
 
-	return (write_unsgnd(0, i, buffer, flg_char, field__width,
+	return (write_unsgnd(0, i, buffer, flg_char, field_width,
 	precision_hdled, len_size));
 }
 
@@ -93,7 +93,7 @@ int print_hexadecimal(va_list types, char buffer[],
 	int flg_char, int field_width, int precision_hdled, int len_size)
 {
 	return (print_hexa(types, "0123456789abcdef", buffer, 
-	flg_char, 'x',field-width, precision_hdled, len_size));
+	flg_char, 'x',field_width, precision_hdled, len_size));
 }
 
 /************* PRINT UNSIGNED NUMBER IN UPPER HEXADECIMAL **************/
@@ -110,7 +110,7 @@ int print_hexadecimal(va_list types, char buffer[],
 int print_hexa_upper(va_list types, char buffer[], 
 	int flg_char, int field_width, int precision_hdled, int len_size)
 {	return (print_hexa(types, "0123456789ABCDEF", buffer,
-	flg_char, 'x',field-width, precision_hdled, len_size));
+	flg_char, 'x', field_width, precision_hdled, len_size));
 }
 
 /************** PRINT HEXX NUM IN LOWER OR UPPER **************/
@@ -124,12 +124,11 @@ int print_hexa_upper(va_list types, char buffer[],
  * @field_width: width
  * @precision_hdled: specifies precision
  * @len_size: Size specifier
- * @len_size: Size specification
  * Return: Number of chars printed
  */
 int print_hexa(va_list types, char map_to[], char buffer[],
-	int flg_char, char flag_ch, int field_width, int precision_hdled, 
-	int len_size, int len_size)
+	char flag_ch, int flg_char, int field_width, int precision_hdled, 
+	int len_size)
 {
 	int i = BUFF_SIZE - 2;
 	unsigned long int numbr = va_arg(types, unsigned long int);

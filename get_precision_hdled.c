@@ -25,7 +25,7 @@ int get_precision_hdled(const char *format, int *i, va_list list)
 			precision *= 10;
 			precision += format[curied_i] - '0';
 		}
-		else if (format[curied] == '*')
+		else if (format[curied_i] == '*')
 		{
 			curied_i++;
 			precision = va_arg(list, int);
